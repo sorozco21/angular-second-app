@@ -1,0 +1,97 @@
+<div class="row p-2">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header ">
+                Client List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th>Company Name</th>
+                                    <th>Contact Person Name</th>
+                                    <th>Contact No</th>
+                                    <th>Employee Strength</th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="isLoader; else loaderDone">
+                                    <td colspan="5" class="text-center align-middle">
+                                        <div class="spinner-border m-2" role="status">
+                                          <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <ng-template #loaderDone>
+                                    <tr *ngFor="let currentClient of clientList; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{currentClient.companyName}}</td>
+                                        <td>{{currentClient.contactPersonName}}</td>
+                                        <td>{{currentClient.contactNo}}</td>
+                                        <td>{{currentClient.employeeStrength}}</td>
+                                    </tr>
+                                </ng-template>
+                                    
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                Create Client
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="mb-3">
+                        <input  type="text" class="form-control"  [(ngModel)]="client.contactPersonName" name="contactPersonName" id="contactPersonName"
+                            placeholder="Contact Person Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.companyName" id="companyName" name="companyName" placeholder="Company Name">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.city" id="city" name="city" placeholder="City">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.pincode" name="pincode" id="pincode" placeholder="Pincode">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.state" name="state" placeholder="State">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.address" name="address" placeholder="Address">
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control"  [(ngModel)]="client.employeeStrength" name="employeeStrength" placeholder="Employee Strength">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.gstNo" name="gstNo" placeholder="GST No">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.contactNo" name="contactNo" placeholder="Contact No">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control"  [(ngModel)]="client.regNo" name="regNo" placeholder="Reg No">
+                    </div>
+                    <div class="row justify-content-center align-items-center ">
+                        <div class="col-auto text-center">
+                          <button type="submit" class="btn btn-primary m-1" (click)="onSubmit()">Submit</button>
+                          <button type="button" class="btn btn-secondary m-1">Reset</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
