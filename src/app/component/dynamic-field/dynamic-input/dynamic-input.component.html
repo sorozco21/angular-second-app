@@ -1,0 +1,12 @@
+<form [formGroup]="formName">
+    <label [for]="field.fieldName">
+        {{ field.label }}
+        <input
+                class="form-control" 
+                [type]="field.type"
+                [name]="field.fieldName"
+                [formControlName]="field.fieldName"
+                [value]="field.value"
+        />
+    </label>
+</form>

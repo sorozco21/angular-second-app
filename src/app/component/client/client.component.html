@@ -50,46 +50,118 @@
                 Create Client
             </div>
             <div class="card-body">
-                <form>
+                <form #form="ngForm"  (ngSubmit)="onSubmit(form)">
+                    <!-- Contact Person Name -->
                     <div class="mb-3">
-                        <input  type="text" class="form-control"  [(ngModel)]="client.contactPersonName" name="contactPersonName" id="contactPersonName"
+                        <input required type="text" minlength="5" #contactPersonName="ngModel" class="form-control" 
+                            [(ngModel)]="client.contactPersonName" name="contactPersonName" id="contactPersonName"
                             placeholder="Contact Person Name">
+                        <div class="text-danger" *ngIf="contactPersonName.invalid && (contactPersonName.dirty || contactPersonName.touched)">
+                            <span *ngIf="contactPersonName.errors?.['required']">**This field is required.</span>
+                            <span *ngIf="contactPersonName.errors?.['minlength']">**This field requires 5 characters.</span>
+                        </div>
                     </div>
+                
+                    <!-- Company Name -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.companyName" id="companyName" name="companyName" placeholder="Company Name">
+                        <input required type="text" #companyName="ngModel" class="form-control" 
+                            [(ngModel)]="client.companyName" name="companyName" id="companyName"
+                            placeholder="Company Name">
+                        <div class="text-danger" *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
-
+                
+                    <!-- City -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.city" id="city" name="city" placeholder="City">
+                        <input required type="text" #city="ngModel" class="form-control" 
+                            [(ngModel)]="client.city" name="city" id="city"
+                            placeholder="City">
+                        <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- Pincode -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.pincode" name="pincode" id="pincode" placeholder="Pincode">
+                        <input required type="text" #pincode="ngModel" class="form-control" 
+                            [(ngModel)]="client.pincode" name="pincode" id="pincode"
+                            placeholder="Pincode">
+                        <div class="text-danger" *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- State -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.state" name="state" placeholder="State">
+                        <input required type="text" minlength="5" #state="ngModel" class="form-control" 
+                            [(ngModel)]="client.state" name="state"
+                            placeholder="State">
+                        <div class="text-danger" *ngIf="state.invalid && (state.dirty || state.touched)">
+                            <span *ngIf="state.errors?.['required']">**This field is required.</span>
+                            <span *ngIf="state.errors?.['minlength']">**This field requires 5 characters.</span>
+                        </div>
                     </div>
+                
+                    <!-- Address -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.address" name="address" placeholder="Address">
+                        <input required type="text" #address="ngModel" class="form-control" 
+                            [(ngModel)]="client.address" name="address"
+                            placeholder="Address">
+                        <div class="text-danger" *ngIf="address.invalid && (address.dirty || address.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- Employee Strength -->
                     <div class="mb-3">
-                        <input type="number" class="form-control"  [(ngModel)]="client.employeeStrength" name="employeeStrength" placeholder="Employee Strength">
+                        <input required type="number" #employeeStrength="ngModel" class="form-control" 
+                            [(ngModel)]="client.employeeStrength" name="employeeStrength"
+                            placeholder="Employee Strength">
+                        <div class="text-danger" *ngIf="employeeStrength.invalid && (employeeStrength.dirty || employeeStrength.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- GST No -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.gstNo" name="gstNo" placeholder="GST No">
+                        <input required type="text" #gstNo="ngModel" class="form-control" 
+                            [(ngModel)]="client.gstNo" name="gstNo"
+                            placeholder="GST No">
+                        <div class="text-danger" *ngIf="gstNo.invalid && (gstNo.dirty || gstNo.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- Contact No -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.contactNo" name="contactNo" placeholder="Contact No">
+                        <input required type="text" #contactNo="ngModel" class="form-control" 
+                            [(ngModel)]="client.contactNo" name="contactNo"
+                            placeholder="Contact No">
+                        <div class="text-danger" *ngIf="contactNo.invalid && (contactNo.dirty || contactNo.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
+                
+                    <!-- Registration No -->
                     <div class="mb-3">
-                        <input type="text" class="form-control"  [(ngModel)]="client.regNo" name="regNo" placeholder="Reg No">
+                        <input required type="text" #regNo="ngModel" class="form-control" 
+                            [(ngModel)]="client.regNo" name="regNo"
+                            placeholder="Registration No">
+                        <div class="text-danger" *ngIf="regNo.invalid && (regNo.dirty || regNo.touched)">
+                            <span>This field is required.</span>
+                        </div>
                     </div>
-                    <div class="row justify-content-center align-items-center ">
+                
+                    <!-- Submit and Reset Buttons -->
+                    <div class="row justify-content-center align-items-center">
                         <div class="col-auto text-center">
-                          <button type="submit" class="btn btn-primary m-1" (click)="onSubmit()">Submit</button>
-                          <button type="button" class="btn btn-secondary m-1">Reset</button>
+                            <button type="submit" class="btn btn-primary m-1" [disabled]="form.invalid">Submit</button>
+                            <button type="button" class="btn btn-secondary m-1" (click)="resetForm(form)">Reset</button>
                         </div>
                     </div>
                 </form>
+                
 
             </div>
         </div>

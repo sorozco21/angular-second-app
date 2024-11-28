@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Client } from '../../model/class/Class';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ClientService } from '../../service/client.service';
 import { CommonModule } from '@angular/common';
 
@@ -32,8 +32,8 @@ export class ClientComponent implements OnInit{
     });
   }
 
-  onSubmit() {
-    debugger;
+  onSubmit(form : NgForm) {
+    
     this.clientService.addUpdateClient(this.client).subscribe({
       next: (res) =>{
         if(res.result){
@@ -45,6 +45,15 @@ export class ClientComponent implements OnInit{
         }
       },
       error: (e) => { console.log(e); alert(e); }
-    });;
+    });
+    if (form.valid) {
+      console.log('Form Submitted:', this.client);
+      this.resetForm(form);
+    }
+  }
+
+  resetForm(form : NgForm){
+    form.reset();
+    this.client=new Client();
   }
 }

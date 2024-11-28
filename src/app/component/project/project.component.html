@@ -1,0 +1,113 @@
+<div class="row p-2">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header ">
+                Client List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th>Company Name</th>
+                                    <th>Contact Person Name</th>
+                                    <th>Contact No</th>
+                                    <th>Employee Strength</th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody>
+                                
+                                    
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                Create Project
+            </div>
+            <div class="card-body">
+                <form [formGroup]="projectForm">  
+                    <div class="mb-3">
+                        <input required type="text" class="form-control"
+                             name="projectName" formControlName="projectName"
+                            placeholder="Project Name">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="date" class="form-control"
+                             name="startDate" formControlName="startDate" 
+                            placeholder="Start Date">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="date" class="form-control"
+                             name="expectedEndDate" formControlName="expectedEndDate"
+                            placeholder="Expected End Date">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="text" class="form-control"
+                             name="contactPerson" formControlName="contactPerson"
+                            placeholder="Contact Person">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="text" class="form-control"
+                             name="contactPersonContactNo"  formControlName="contactPersonContactNo"
+                            placeholder="Person Contact No">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="text" class="form-control"
+                             name="contactPersonEmailId" formControlName="contactPersonEmailId"
+                            placeholder="Person Contact Email">
+                    </div>
+                    <div class="mb-3">
+                        <input required type="number" class="form-control"
+                             name="totalEmpWorking" formControlName="totalEmpWorking"
+                            placeholder="Total Employee Working">
+                    </div>
+
+                    <div class="mb-3">
+                        <input required type="number" class="form-control"
+                             name="projectCost" formControlName="projectCost"
+                            placeholder="Project Cost">
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea required type="textarea" class="form-control"
+                             name="projectDetails" formControlName="projectDetails"
+                            placeholder="Project Details"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <select name="" class="form-control" id="" formControlName="clientId" >
+                            <option value="">Select Client:</option>
+                            <option *ngFor="let item of clientList" [value]="item.clientId">{{item.clientId}} - {{item.companyName}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select name="" class="form-control" id=""  formControlName="leadByEmpId">
+                            <option value="">Lead by:</option>
+                            <option *ngFor="let item of employeeList" [value]="item.empId">({{item.empCode}}) {{item.empName}}</option>
+                        </select>
+                    </div>
+                
+                    <!-- Submit and Reset Buttons -->
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-auto text-center">
+                            <button type="submit" class="btn btn-primary m-1" (click)="onSubmit()">Submit</button>
+                            <button type="button" class="btn btn-secondary m-1">Reset</button>
+                        </div>
+                    </div>
+                </form>
+                
+
+            </div>
+        </div>
+    </div>
+</div>

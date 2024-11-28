@@ -1,0 +1,26 @@
+<div
+  *ngIf="
+    formName.controls[field.fieldName].invalid &&
+    (formName.controls[field.fieldName].dirty || formName.controls[field.fieldName].touched)
+  "
+  class="text-danger"
+>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['required']">
+    ** {{ field.rules.required.message }} 
+  </div>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['maxlength']">
+    ** {{ field.rules.maxLength.message }} 
+  </div>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['minlength']">
+    ** {{ field.rules.minLength.message }} 
+  </div>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['max']">
+    ** {{ field.rules.max.message }} 
+  </div>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['min']">
+    ** {{ field.rules.min.message }} 
+  </div>
+  <div *ngIf="formName.controls[field.fieldName].errors?.['pattern']">
+    ** {{ field.rules.pattern.message }} 
+  </div>
+</div>
