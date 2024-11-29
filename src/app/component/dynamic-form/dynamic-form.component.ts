@@ -12,7 +12,11 @@ import { DynamicErrorComponent } from "../dynamic-field/dynamic-error/dynamic-er
   styleUrl: './dynamic-form.component.scss'
 })
 export class DynamicFormComponent implements OnInit{
+
+  
   @Input() model: FormFieldDefinition = {};
+  @Input() submit!: (formData : any) => void;
+
   public dynamicFormGroup!: FormGroup;
   public fields : any[] = [];
 
@@ -63,5 +67,23 @@ export class DynamicFormComponent implements OnInit{
     }
   
     return validators;
+  }
+
+  // Dynamic submit handler passed by the parent
+  onSubmit() {
+    if (this.dynamicFormGroup.valid) {
+      // Capture form values
+      const formData = this.dynamicFormGroup.value;
+      // Pass the form data to the parent's custom submit handler
+      this.submit(formData);
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  resetForm(form: FormGroup) {
+    console.log(form.value)
+    form.reset()
+    console.log(form.value)
   }
 }

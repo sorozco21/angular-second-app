@@ -65,4 +65,9 @@ export class EmployeeComponent {
     },
   };
 
+  // Custom submit handler defined in the parent component
+  onFormSubmit(formData: any) {
+    console.log('Form submitted with data:', formData);
+    // Process the data (e.g., send to an API)
+  }
 }
