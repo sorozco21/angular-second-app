@@ -18,6 +18,6 @@ export class DynamicErrorComponent implements OnInit {
 
   ngOnInit() {
     this.formName = this.formgroupDirective.control;
-    console.log(this.field)
+    console.log('logging field in error component : ',this.field)
   }
 }

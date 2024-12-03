@@ -9,6 +9,7 @@ import { DynamicFormComponent } from "../dynamic-form/dynamic-form.component";
   styleUrl: './employee.component.scss'
 })
 export class EmployeeComponent {
+  
   model: FormFieldDefinition = {
     firstName: {
       type: 'text',
@@ -33,34 +34,46 @@ export class EmployeeComponent {
         },
       },
     },
-    age: {
-      type: 'number',
-      label: 'Age',
-      value: '',
+    // age: {
+    //   type: 'number',
+    //   label: 'Age',
+    //   value: '',
+    //   rules: {
+    //     required: {
+    //       value: true,
+    //       message: "This field is required.",
+    //     },
+    //     min: {
+    //       value: 18,
+    //       message: "Value must be at least 18.",
+    //     },
+    //     max: {
+    //       value: 100,
+    //       message: "Value must be at most 100.",
+    //     },
+    //   },
+    // },
+    // birthDate: {
+    //   type: 'date',
+    //   label: 'Birth Date',
+    //   value: '',
+    //   rules: {
+    //     required: {
+    //       value: true,
+    //       message: "This field is required.",
+    //     },
+    //   },
+    // },
+    file: {
+      type: 'file',
+      value: null,
+      accept: "image/*",
+      label: 'Upload Document',
+      multiple: false,
       rules: {
-        required: {
-          value: true,
-          message: "This field is required.",
-        },
-        min: {
-          value: 18,
-          message: "Value must be at least 18.",
-        },
-        max: {
-          value: 100,
-          message: "Value must be at most 100.",
-        },
-      },
-    },
-    birthDate: {
-      type: 'date',
-      label: 'Birth Date',
-      value: '',
-      rules: {
-        required: {
-          value: true,
-          message: "This field is required.",
-        },
+        required: {value: true, message: 'Uploading is required'},
+        maxFiles: {value: 2, message: 'Max number of files is 2.'},
+        maxSize: {value: 5 * 1024 * 1024, message: 'File size should be under 5mb.'},
       },
     },
   };

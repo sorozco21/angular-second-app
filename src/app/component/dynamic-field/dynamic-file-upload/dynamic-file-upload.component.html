@@ -1,0 +1,15 @@
+<form [formGroup]="formName">
+    <div class="form-group">
+      <label [for]="field.fieldName" class="form-label">
+        {{ field.label }}
+      </label>
+      <input
+        class="form-control"
+        type="file"
+        [name]="field.fieldName"
+        (change)="onFileChange($event, field.fieldName)"
+        [attr.multiple]="field.multiple ? '' : null"
+        [accept]="field.accept"
+      />
+    </div>
+  </form>

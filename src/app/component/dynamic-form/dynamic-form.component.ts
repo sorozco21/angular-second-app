@@ -4,6 +4,7 @@ import { BaseField, BaseFieldRules, FieldRules, FormFieldDefinition } from '../.
 import { CommonModule } from '@angular/common';
 import { DynamicFieldComponent } from "../dynamic-field/dynamic-field.component";
 import { DynamicErrorComponent } from "../dynamic-field/dynamic-error/dynamic-error.component";
+import { fileSizeValidator } from '../../directive/file-size-validator.directive';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -56,16 +57,19 @@ export class DynamicFormComponent implements OnInit{
       minLength: (value: number) => Validators.minLength(value),
       maxLength: (value: number) => Validators.maxLength(value),
       pattern: (value: string) => Validators.pattern(value),
+      maxSize: (value: number) => fileSizeValidator(value)
     };
   
     // Iterate over each rule key and apply the corresponding validator
     for (const [key, rule] of Object.entries(rules)) {
       const validatorFn = ruleToValidatorMap[key];
       if (validatorFn && rule?.value !== undefined) {
+        if(key === 'maxSize'){
+          console.log('vvv : ', rule.value)
+        }
         validators.push(validatorFn(rule.value));
       } 
     }
-  
     return validators;
   }
 
@@ -78,6 +82,12 @@ export class DynamicFormComponent implements OnInit{
       this.submit(formData);
     } else {
       console.log('Form is invalid');
+      Object.keys(this.dynamicFormGroup.controls).forEach((fieldName) => {
+        const control = this.dynamicFormGroup.get(fieldName);
+        if (control && control.errors) {
+          console.log(`Errors for ${fieldName}:`, control.errors);
+        }
+      });
     }
   }
 

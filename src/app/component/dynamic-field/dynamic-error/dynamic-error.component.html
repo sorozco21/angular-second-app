@@ -23,4 +23,17 @@
   <div *ngIf="formName.controls[field.fieldName].errors?.['pattern']">
     ** {{ field.rules.pattern.message }} 
   </div>
+  <!-- <div *ngIf="formName.get(field.fieldName)?.errors as errors">
+    <p *ngIf="errors['fileSize']">
+      ** {{ errors['fileSize'].message }} 
+    </p>
+  </div> -->
+  <!-- {{formName.controls[field.fieldName].errors?.['fileSize']}}
+  <div *ngIf="formName.controls[field.fieldName].errors?.['fileSize']">
+    ** sad{{ field.rules.maxSize.message }} 
+  </div> -->
+  <div *ngIf="formName.get(field.fieldName)?.hasError('fileSize')">
+    {{ field.rules.maxSize.message }}
+  </div>
+
 </div>

@@ -92,6 +92,19 @@ export interface TextAreaField extends BaseTextField {
     cols?: number;
 }
 
+export interface FileUploadField extends BaseField{
+    type: 'file';
+    accept?: string; // Specifies the file types to accept (e.g., '.jpg, .png, .pdf')
+    multiple?: boolean; // Whether multiple files can be uploaded
+    rules?: FileUploadFieldRules
+}
+
+export interface FileUploadFieldRules extends BaseFieldRules{
+    maxSize?: ValidationRule<number>; // Maximum file size in bytes (optional)
+    maxFiles?: ValidationRule<number>; // Maximum number of files (for `multiple` mode)
+    allowedExtensions?: ValidationRule<string>; // Array of allowed file extensions (e.g., ['jpg', 'png', 'pdf'])
+}
+
 export type FieldType =
     | 'text'
     | 'number'
@@ -100,6 +113,7 @@ export type FieldType =
     | 'radio'
     | 'checkbox'
     | 'select'
+    | 'file'
     | 'textarea';
 
 export type FieldRules =
@@ -108,9 +122,10 @@ export type FieldRules =
     | DateFieldRules
     | SelectFieldRules
     | CheckboxFieldRules
+    | FileUploadFieldRules
     | RadioFieldRules;
 
 
 export interface FormFieldDefinition {
-    [key: string]: TextField | RadioField | CheckboxField | SelectField | TextAreaField;
+    [key: string]: TextField | RadioField | CheckboxField | SelectField | TextAreaField | FileUploadField;
 }
